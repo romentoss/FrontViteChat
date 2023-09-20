@@ -12,12 +12,14 @@ export const connectToServer = (token:string) => {
     });
 
 
-    const socket = manager.socket('/');
+    socket?.removeAllListeners();
+    socket = manager.socket('/');
+
     // http://localhost:3000/socket.io/socket.io.js
-    addListeners(socket);
+    addListeners();
 }
 
-const addListeners = (socket:Socket) => {
+const addListeners = () => {
     const clientsUl = document.querySelector('#clients-ul')!;
     const serverStatusLabel = document.querySelector('#server-status')!;
    
